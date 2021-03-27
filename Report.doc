@@ -1,4 +1,7 @@
 Introduction:
+The purpose of this project is to create a job scheduler/dsipatcher that automatically assigns job to the largest server type. This job scheduler needs to be compatiable with
+the supplied ds-server file (from https://github.com/distsys-MQ/ds-sim). The scheduler should fucntion in a similar manned to the ds-client file provided within the supplied file.
+All simulation logs (provided via the "-v brief" function) should exactly mathc those produced by the original ds-client file.
 
 System Overview:
 
