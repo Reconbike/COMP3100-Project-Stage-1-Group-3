@@ -8,6 +8,7 @@
 		static final String OK   = "OK";
 		static final String REDY = "REDY";
 		static final String GETALL = "GETS All";
+		static final String QUIT = "QUIT";
 
 	    public static void main(String args[])throws Exception{ 
 			Socket s=new Socket("localhost",50000);  
@@ -44,11 +45,36 @@
 			dout.write(REDY.getBytes());
 			dout.flush();
 
-			byte[] groupofbytes = new byte[5]; // Server resposne
+			byte[] groupofbytes = new byte[50]; // Server response
 			din.read(groupofbytes);
 			TempStringResponse3 = new String(groupofbytes, StandardCharsets.UTF_8);
 			System.out.println("Server: " + TempStringResponse3);
 
+			while (!TempStringResponse3.equals("NONE"))
+				{
+					if(TempStringResponse3.substring(0, 4).equals("JOBN"))
+					{
+						String[] JOBNsplit = TempStringResponse3.split("\\s+");
+						int JobSubmitTime = Integer.parseInt(JOBNsplit[1]);
+						int JobID = Integer.parseInt(JOBNsplit[2]);
+						int JobRunTime = Integer.parseInt(JOBNsplit[3]);
+						int JobCores = Integer.parseInt(JOBNsplit[4]);
+						int JobMemory = Integer.parseInt(JOBNsplit[5]);
+						int JobDisk = Integer.parseInt(JOBNsplit[6]);
+					
+						
+						System.out.println(JOBNsplit[0]);
+						System.out.println(JOBNsplit[1]);
+						System.out.println(JOBNsplit[2]);
+						System.out.println(JOBNsplit[3]);
+						System.out.println(JOBNsplit[4]);
+					}
+
+				}
+
+
+
+			/*
 			//get all test
 			dout.write(GETALL.getBytes());
 			dout.flush();
@@ -66,14 +92,14 @@
 			//get all response
 			byte[] groupofbytes2 = new byte[184*124];
 			din.read(groupofbytes2);
-			TempStringResponse5 = new String(groupofbytes1, StandardCharsets.UTF_8);
+			TempStringResponse5 = new String(groupofbytes2, StandardCharsets.UTF_8);
 			System.out.println("Server: " + TempStringResponse5);
 
 
 			//get all test
 			dout.write(OK.getBytes());
 			dout.flush();
-
+			*/
 
 
 			/*
