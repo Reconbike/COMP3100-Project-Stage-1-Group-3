@@ -7,7 +7,7 @@
 		static final String HELO = "HELO";
 		static final String OK   = "OK";
 		static final String REDY = "REDY";
-		static final String GETALL = "GETS All";
+		static final String GETAVAIL = "GETS Avail";
 		static final String QUIT = "QUIT";
 
 	    public static void main(String args[])throws Exception{ 
@@ -50,6 +50,7 @@
 
 			//Largest server name and id (eg. x-large 3)
 			String largestServer = null;
+			String availCommand;
 
 			while (tasksLeft)
 				{
@@ -70,10 +71,10 @@
 						String[] JOBNsplit = TempStringResponse.split("\\s+");
 						int JobSubmitTime = Integer.parseInt(JOBNsplit[1]);
 						int JobID = Integer.parseInt(JOBNsplit[2]);
-						int JobRunTime = Integer.parseInt(JOBNsplit[3]);
-						int JobCores = Integer.parseInt(JOBNsplit[4]);
-						int JobMemory = Integer.parseInt(JOBNsplit[5]);
-						//int JobDisk = Integer.parseInt(JOBNsplit[6]);
+						String JobRunTime = JOBNsplit[3];
+						String JobCores = JOBNsplit[4];
+						String JobMemory = JOBNsplit[5];
+						String JobDisk = JOBNsplit[6];
 					
 						
 						/*System.out.println(JOBNsplit[0]);
@@ -82,8 +83,10 @@
 						System.out.println(JOBNsplit[3]);
 						System.out.println(JOBNsplit[4]);
 */
+						//
+						availCommand = GETAVAIL + " " + JobCores + " " + JobMemory + " " + JobDisk;
 						//Send GetALl request
-						dout.write(GETALL.getBytes());
+						dout.write(availCommand.getBytes());
 						dout.flush();
 	
 						//get all response
