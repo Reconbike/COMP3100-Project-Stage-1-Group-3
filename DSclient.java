@@ -9,6 +9,7 @@
 		static final String REDY = "REDY";
 		static final String GETAVAIL = "GETS Avail";
 		static final String QUIT = "QUIT";
+		static final String GETALL = "GETS All";
 
 	    public static void main(String args[])throws Exception{ 
 			Socket s=new Socket("localhost",50000);  
@@ -63,6 +64,11 @@
 					//If non tasks left change boolean value
 					if(TempStringResponse.substring(0, 4).equals("NONE")){
 						tasksLeft = false;
+
+						//Send quit message to server
+						dout.write(QUIT.getBytes());
+						dout.flush();
+						break;
 					}
 
 					//Split job values
@@ -81,26 +87,32 @@
 						System.out.println(JOBNsplit[1]);
 						System.out.println(JOBNsplit[2]);
 						System.out.println(JOBNsplit[3]);
-						System.out.println(JOBNsplit[4]);
-*/
+						System.out.println(JOBNsplit[4]);*/
 						//
-						availCommand = GETAVAIL + " " + JobCores + " " + JobMemory + " " + JobDisk;
+						//availCommand = GETAVAIL + " " + JobCores + " " + JobMemory + " " + JobDisk;
 						//Send GetALl request
-						dout.write(availCommand.getBytes());
+						dout.write(GETALL.getBytes());
 						dout.flush();
 	
 						//get all response
-						byte[] groupofbytes1 = new byte[12];
+						byte[] groupofbytes1 = new byte[20];
 						din.read(groupofbytes1);
 						TempStringResponse = new String(groupofbytes1, StandardCharsets.UTF_8);
 						System.out.println("Server: " + TempStringResponse);
-	
+
+						//Splitting data response into useable variables
+						String[] DATAsplit = TempStringResponse.split(" ");
+						String datacol = DATAsplit[2].trim();
+						int Rows = Integer.parseInt(DATAsplit[1]);
+						int Col = Integer.parseInt(datacol);
+						
 						//get all test
 						dout.write(OK.getBytes());
 						dout.flush();
+
 						
 						//get all response
-						byte[] groupofbytes2 = new byte[184*124];
+						byte[] groupofbytes2 = new byte[(Rows * Col)];
 						din.read(groupofbytes2);
 						TempStringResponse = new String(groupofbytes2, StandardCharsets.UTF_8);
 						System.out.println("Server: " + TempStringResponse);
