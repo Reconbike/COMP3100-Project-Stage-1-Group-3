@@ -1,4 +1,4 @@
-Title: Big Boy Dispatcher
+﻿Title: Big Boy Dispatcher
 
 Student Information:
 Reconbike - Brendon Bano - 45317674
@@ -6,13 +6,22 @@ ED2303 - Ethan Darnley - 45956022
 caleb-ledger - Caleb Ledger - 45238472
 
 Introduction:
-The purpose of this project is to create a job scheduler/dispatcher that automatically assigns job to the largest server type. This job scheduler needs to be compatiable with
-the supplied ds-server file (from https://github.com/distsys-MQ/ds-sim). The scheduler should fucntion in a similar manned to the ds-client file provided within the supplied file.
-All simulation logs (provided via the "-v brief" function) should exactly mathc those produced by the original ds-client file.
+The purpose of this project is to create a job scheduler/dispatcher that automatically assigns job to the largest server type. This job scheduler needs to be compatible with
+the supplied ds-server file (from https://github.com/distsys-MQ/ds-sim). The scheduler should function in a similar manned to the ds-client file provided within the supplied file.
+All simulation logs (provided via the "-v brief" function) should exactly match those produced by the original ds-client file.
 
 System Overview:
 
 Design:
+
+Throughout this project, we as a group have had many questions and problems to work through to understand what it was, we wanted to achieve exactly, after enough research and understanding, we concluded that for DS-Client we were going to design it in rather a linear fashion. Why? Because We knew that for this Task the DS-Client was only going to have ONE function and that is to be a job-Scheduler for the DS-Server model with every single job being treated the same way with no given opportunities to be different, this is all based on the algorithm of All to largest; we took the meaning of All to largest as a methodology. That All to Largest means our entire program will be focused on the same goal, to push all jobs to the largest server; it was supposed to all work in unison and there would be no need to divide the program into separate aspects/methods. There were a few talks to consider that All to largest is simply just a method to handle all jobs and push them to the highest server, but that was not the case with this group. Our entire source code was an implementation of  the All to Largest Policy; as that was to be the soul purpose of our DS-Client program.
+
+With our Idea set in stone we had to consider the constraints of our project, we knew that our biggest and most important constraint was how to identify the largest server, this was prescribed to us as the server with the greatest number of cores was to be identified and used every single time, 
+
+We Knew that when dealing with socket programming in java that for the DS-Client we were going to have to handle the transmission of bytes constantly which we could easily catch in byte arrays but loads of conversions to all different data types were required before they could be used as normal variables for our scheduler. 
+
+We Decided in the end that most of the functionality will be handled within the giant while loop, have all important features such as the job scheduler and largest server identifier be encased in the loop, this is the result when we are dealing with the constant oncoming responses from the server and the loop is only broken when the server is ending.
+
 
 Implementation
 
