@@ -6,11 +6,10 @@ ED2303 - Ethan Darnley - 45956022
 caleb-ledger - Caleb Ledger - 45238472
 
 Introduction:
-The purpose of this project is to create a job scheduler/dispatcher that automatically assigns job to the largest server type. This job scheduler needs to be compatible with
-the supplied ds-server file (from https://github.com/distsys-MQ/ds-sim). The scheduler should function in a similar manned to the ds-client file provided within the supplied file.
-All simulation logs (provided via the "-v brief" function) should exactly match those produced by the original ds-client file.
+The purpose of this project is to create a job scheduler/dispatcher that automatically assigns job to the largest server type. This job scheduler needs to be compatible with the supplied ds-server file (from https://github.com/distsys-MQ/ds-sim). The scheduler should function in a similar manned to the ds-client file provided within the supplied file. All simulation logs (provided via the "-v brief" function) should exactly match those produced by the original ds-client file.
 
-System Overview:
+System Overview: 
+This project is a simple job dispatcher that assigns all jobs given to the largest available server. It is compatible with the supplied ds-server file and works in conjunction with the file. It works by using the supplied outputs (provided from the ds-server documentation) from ds-server and responds accordingly, before assigning all given events to the largest available server. It does this by emulating the handshake process used in the ds-sim communication protocol, before finding the largest server by finding the first listed server with the highest number of CPU cores, then proceeds to schedule the job onto that server. It then will proceed to schedule all jobs onto that server.
 
 Design:
 
