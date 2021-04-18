@@ -82,14 +82,6 @@
 						String JobMemory = JOBNsplit[5];
 						String JobDisk = JOBNsplit[6];
 					
-						
-						/*System.out.println(JOBNsplit[0]);
-						System.out.println(JOBNsplit[1]);
-						System.out.println(JOBNsplit[2]);
-						System.out.println(JOBNsplit[3]);
-						System.out.println(JOBNsplit[4]);*/
-						//
-						//availCommand = GETAVAIL + " " + JobCores + " " + JobMemory + " " + JobDisk;
 						//Send GetALl request
 						dout.write(GETALL.getBytes());
 						dout.flush();
